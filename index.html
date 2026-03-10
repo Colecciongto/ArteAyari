@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MAYARIKH | Coleccionismo de Arte Gótico y Ancestral</title>
+    <meta name="description" content="MAYARIKH: Colecciones de arte exclusivo, lienzos y licoreras pintadas a mano con esencia gótica y raíces zapotecas.">
+    
+    <!-- Google Fonts: Cinzel (Gótico/Elegante) & Space Mono (Neobrutalismo) & Inter (Lectura) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS (Framework para prototipado rápido y responsive) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Configuración Tailwind -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        void: '#09090b',       /* Negro profundo */
+                        bone: '#e8e6df',       /* Blanco hueso/pergamino */
+                        blood: '#7a0000',      /* Rojo sangre gótico */
+                        obsidian: '#1a1a1c',   /* Gris oscuro */
+                    },
+                    fontFamily: {
+                        gothic: ['Cinzel', 'serif'],
+                        brutal: ['Space Mono', 'monospace'],
+                        body: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* ESTILOS PERSONALIZADOS: NEOBRUTALISMO + GÓTICO */
+        body {
+            background-color: theme('colors.void');
+            color: theme('colors.bone');
+            background-image: radial-gradient(theme('colors.obsidian') 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+
+        /* Sombras sólidas neobrutalistas */
+        .shadow-brutal-blood {
+            box-shadow: 8px 8px 0px 0px theme('colors.blood');
+            transition: all 0.2s ease-in-out;
+        }
+        .shadow-brutal-blood:hover {
+            transform: translate(4px, 4px);
+            box-shadow: 4px 4px 0px 0px theme('colors.blood');
+        }
+
+        .shadow-brutal-bone {
+            box-shadow: 6px 6px 0px 0px theme('colors.bone');
+            transition: all 0.2s ease-in-out;
+        }
+        .shadow-brutal-bone:hover {
+            transform: translate(3px, 3px);
+            box-shadow: 3px 3px 0px 0px theme('colors.bone');
+        }
+
+        /* Botones Neobrutalistas */
+        .btn-brutal {
+            display: inline-block;
+            background-color: theme('colors.blood');
+            color: theme('colors.bone');
+            font-family: theme('fontFamily.brutal');
+            font-weight: 700;
+            text-transform: uppercase;
+            border: 3px solid theme('colors.bone');
+            padding: 0.75rem 1.5rem;
+            cursor: pointer;
+            box-shadow: 6px 6px 0px 0px theme('colors.bone');
+            transition: all 0.1s ease-in-out;
+        }
+        .btn-brutal:hover {
+            transform: translate(4px, 4px);
+            box-shadow: 2px 2px 0px 0px theme('colors.bone');
+            background-color: theme('colors.bone');
+            color: theme('colors.blood');
+            border-color: theme('colors.blood');
+        }
+
+        /* Inputs de Formulario Brutalistas */
+        .input-brutal {
+            width: 100%;
+            background-color: theme('colors.bone');
+            color: theme('colors.void');
+            font-family: theme('fontFamily.brutal');
+            border: 3px solid theme('colors.void');
+            padding: 0.75rem;
+            margin-bottom: 1rem;
+            box-shadow: 4px 4px 0px 0px theme('colors.blood');
+            outline: none;
+            transition: box-shadow 0.2s;
+        }
+        .input-brutal:focus {
+            box-shadow: 6px 6px 0px 0px theme('colors.void');
+        }
+
+        /* Menú Desplegable (Submenú) */
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: -3px; /* Alinear con el borde del padre */
+            background-color: theme('colors.bone');
+            border: 3px solid theme('colors.void');
+            box-shadow: 4px 4px 0px 0px theme('colors.blood');
+            min-width: 200px;
+            z-index: 50;
+        }
+        .dropdown-container:hover .dropdown-menu {
+            display: block;
+        }
+        
+        /* Ajuste de logo para contraste en barra clara */
+        .logo-nav {
+            filter: contrast(1.2) drop-shadow(2px 2px 0px rgba(0,0,0,0.3));
+        }
+        
+        /* Utilidades de imagen para encajar sin deformar */
+        .img-cover-brutal {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border: 4px solid theme('colors.bone');
+            background-color: theme('colors.obsidian');
+        }
+    </style>
+</head>
+<body class="font-body antialiased selection:bg-blood selection:text-bone">
+
+    <!-- BARRA DE NAVEGACIÓN -->
+    <nav class="fixed w-full z-40 bg-bone text-void border-b-4 border-void shadow-[0_4px_0_0_#7a0000]">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-24">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center h-full py-2">
+                    <a href="#" class="h-full">
+                        <img src="Logotipo_MayariKH.PNG" alt="MAYARIKH Logo" class="h-full w-auto object-contain logo-nav">
+                    </a>
+                </div>
+
+                <!-- Menú Desktop -->
+                <div class="hidden md:flex space-x-8 items-center font-brutal font-bold text-sm tracking-wider uppercase">
+                    <a href="#about" class="hover:text-blood hover:-translate-y-1 transition-transform">Acerca de</a>
+                    
+                    <!-- Dropdown Colecciones -->
+                    <div class="relative dropdown-container py-4">
+                        <a href="#collections" class="hover:text-blood flex items-center gap-1 hover:-translate-y-1 transition-transform">
+                            Colecciones 
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#collections" class="block px-4 py-3 border-b-2 border-void hover:bg-blood hover:text-bone">Lienzos y Arte</a></li>
+                            <li><a href="#collections" class="block px-4 py-3 hover:bg-blood hover:text-bone">Licoreras Pintadas</a></li>
+                        </ul>
+                    </div>
+                    
+                    <a href="#gallery" class="hover:text-blood hover:-translate-y-1 transition-transform">Galería</a>
+                    <a href="#shop" class="hover:text-blood hover:-translate-y-1 transition-transform">Tienda</a>
+                    <a href="#contact" class="hover:text-blood hover:-translate-y-1 transition-transform">Contacto</a>
+                </div>
+
+                <!-- Botón Menú Móvil -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-void hover:text-blood focus:outline-none">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Menú Móvil Desplegable -->
+        <div id="mobile-menu" class="hidden md:hidden bg-bone border-t-4 border-void font-brutal font-bold text-void">
+            <a href="#about" class="block px-4 py-4 border-b-2 border-void">Acerca de</a>
+            <a href="#collections" class="block px-4 py-4 border-b-2 border-void">Colecciones</a>
+            <a href="#gallery" class="block px-4 py-4 border-b-2 border-void">Galería</a>
+            <a href="#shop" class="block px-4 py-4 border-b-2 border-void">Tienda</a>
+            <a href="#contact" class="block px-4 py-4">Contacto</a>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <header class="relative pt-32 pb-16 md:pt-40 md:pb-24 overflow-hidden min-h-screen flex items-center">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                <!-- Texto Hero -->
+                <div class="order-2 md:order-1">
+                    <h2 class="font-brutal text-blood font-bold tracking-widest uppercase mb-4 text-sm border-l-4 border-blood pl-4">Coleccionismo Ancestral</h2>
+                    <h1 class="font-gothic text-5xl md:text-7xl lg:text-8xl font-black leading-none mb-6 text-bone uppercase">
+                        El Arte de la <br><span class="text-transparent" style="-webkit-text-stroke: 2px #e8e6df;">Oscuridad</span> <br>y la Raíz.
+                    </h1>
+                    <p class="font-body text-gray-400 text-lg mb-8 max-w-lg">
+                        Piezas únicas donde la herencia de Oaxaca y la mística zapoteca colisionan con una estética cruda, oscura y gótica. Adquiere fragmentos de eternidad.
+                    </p>
+                    <a href="#collections" class="btn-brutal text-lg">Explorar Obra</a>
+                </div>
+                <!-- Imagen Hero -->
+                <div class="order-1 md:order-2 relative group">
+                    <div class="absolute inset-0 bg-blood translate-x-4 translate-y-4 border-4 border-bone"></div>
+                    <img src="Craneo y Luna.jpeg" alt="Obra Cráneo y Luna" class="relative z-10 border-4 border-bone w-full object-cover aspect-[4/5] filter grayscale hover:grayscale-0 transition-all duration-500">
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- SECCIÓN ACERCA DE -->
+    <section id="about" class="py-24 bg-bone text-void border-y-8 border-void">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row gap-16 items-center">
+                <div class="w-full md:w-1/2">
+                    <div class="relative shadow-brutal-blood border-4 border-void bg-void p-2">
+                        <img src="Lienzo Oaxaqueño.jpeg" alt="Lienzo Oaxaqueño" class="w-full h-auto object-cover border-2 border-bone">
+                    </div>
+                </div>
+                <div class="w-full md:w-1/2">
+                    <h2 class="font-gothic text-4xl md:text-6xl font-bold mb-6 uppercase text-blood">Génesis <br>de MAYARIKH</h2>
+                    <div class="space-y-4 font-body text-lg font-medium leading-relaxed">
+                        <p>
+                            MAYARIKH no es solo una marca; es un santuario visual. Nace en las profundidades de la tradición, fusionando la vibrante cultura del arte Oaxaqueño y las raíces Zapotecas con el misticismo del arte gótico.
+                        </p>
+                        <p>
+                            Cada trazo es un acto de rebeldía neobrutalista. Elaboramos lienzos y piezas de arte objeto (licoreras, cráneos, jarrones) destinadas a coleccionistas que buscan lo profano, lo sagrado y lo atemporal en una sola pieza.
+                        </p>
+                    </div>
+                    <div class="mt-8">
+                        <span class="inline-block border-2 border-void px-4 py-2 font-brutal font-bold uppercase text-sm tracking-widest bg-void text-bone shadow-[4px_4px_0_0_#7a0000]">Arte Hecho a Mano</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN COLECCIONES -->
+    <section id="collections" class="py-24 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="font-gothic text-4xl md:text-6xl font-bold mb-4 uppercase text-bone">Nuestras Colecciones</h2>
+                <div class="w-24 h-2 bg-blood mx-auto"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <!-- Colección 1 -->
+                <div class="bg-obsidian border-4 border-bone p-6 shadow-brutal-blood group relative cursor-pointer">
+                    <div class="aspect-[4/3] w-full mb-6 overflow-hidden border-2 border-bone">
+                        <img src="Jarrón Traslucido.jpeg" alt="Colección de Lienzos" class="w-full h-full object-cover filter brightness-75 group-hover:scale-105 group-hover:brightness-100 transition-all duration-500">
+                    </div>
+                    <h3 class="font-gothic text-3xl font-bold text-bone mb-2">Lienzos & Arte Objeto</h3>
+                    <p class="font-body text-gray-400 mb-6">Claroscuros, grabados crudos y pinturas que capturan el alma de lo ancestral. Obras sobre lienzo y texturas sólidas.</p>
+                    <button class="font-brutal text-blood font-bold uppercase tracking-wider group-hover:text-bone transition-colors">Ver Colección →</button>
+                </div>
+
+                <!-- Colección 2 -->
+                <div class="bg-obsidian border-4 border-bone p-6 shadow-brutal-blood group relative cursor-pointer">
+                    <div class="absolute -right-4 -top-4 bg-blood text-bone font-brutal font-bold px-3 py-1 border-2 border-bone z-10 rotate-3 shadow-[4px_4px_0_0_#e8e6df]">DESTACADO</div>
+                    <div class="aspect-[4/3] w-full mb-6 overflow-hidden border-2 border-bone">
+                        <img src="Licorera Águila Zapoteca.jpeg" alt="Licoreras Decorativas" class="w-full h-full object-cover filter brightness-75 group-hover:scale-105 group-hover:brightness-100 transition-all duration-500">
+                    </div>
+                    <h3 class="font-gothic text-3xl font-bold text-bone mb-2">Licoreras Pintadas</h3>
+                    <p class="font-body text-gray-400 mb-6">Elixires contenidos en arte. Botellas de cristal intervenidas a mano con iconografía zapoteca, flora de la muerte y simbolismo gótico.</p>
+                    <button class="font-brutal text-blood font-bold uppercase tracking-wider group-hover:text-bone transition-colors">Ver Colección →</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN GALERÍA -->
+    <section id="gallery" class="py-24 bg-blood border-y-8 border-bone text-bone">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-12">
+                <div>
+                    <h2 class="font-gothic text-4xl md:text-6xl font-bold uppercase text-void">Galería <br><span class="text-bone">Visual</span></h2>
+                </div>
+                <p class="font-brutal text-sm uppercase font-bold tracking-widest text-void mt-4 md:mt-0 bg-bone px-4 py-2 border-2 border-void">Archivos de la Sombra</p>
+            </div>
+
+            <!-- CSS Grid Masonry Asimétrico para look brutalista -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[300px]">
+                <div class="md:col-span-2 md:row-span-2 border-4 border-void shadow-[8px_8px_0_0_#09090b] relative group overflow-hidden bg-void">
+                    <img src="Licoreras Decorativas color.jpeg" alt="Licoreras Color" class="w-full h-full object-contain p-4 group-hover:scale-105 transition-transform duration-700">
+                </div>
+                <div class="border-4 border-void shadow-[6px_6px_0_0_#09090b] relative group overflow-hidden bg-obsidian">
+                    <img src="Craneo y Luna.jpeg" alt="Craneo" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                </div>
+                <div class="border-4 border-void shadow-[6px_6px_0_0_#09090b] relative group overflow-hidden bg-obsidian">
+                    <img src="Licoreras Decorativas.jpeg" alt="Licoreras Oscuras" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700">
+                </div>
+                <div class="md:col-span-3 border-4 border-void shadow-[8px_8px_0_0_#09090b] relative group overflow-hidden bg-void p-2">
+                    <img src="Lienzo Oaxaqueño.jpeg" alt="Lienzo" class="w-full h-64 object-cover object-center group-hover:scale-105 transition-transform duration-700 border-2 border-bone">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN TIENDA (Ficticia) -->
+    <section id="shop" class="py-24 bg-void relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="font-gothic text-4xl md:text-6xl font-bold uppercase text-bone mb-4">Adquisiciones</h2>
+                <p class="font-brutal text-gray-500 uppercase tracking-widest">Piezas únicas disponibles para coleccionistas</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
+                <!-- Producto 1 -->
+                <div class="bg-[#121212] border-4 border-bone p-4 flex flex-col h-full shadow-brutal-blood relative group">
+                    <div class="h-80 w-full mb-4 border-2 border-obsidian overflow-hidden bg-black flex items-center justify-center">
+                        <img src="Licorera Águila Zapoteca.jpeg" alt="Águila Zapoteca" class="max-h-full max-w-full object-contain group-hover:scale-110 transition-transform duration-500">
+                    </div>
+                    <div class="flex-grow">
+                        <h3 class="font-gothic font-bold text-2xl text-bone mb-1">Licorera Águila Zapoteca</h3>
+                        <p class="font-body text-sm text-gray-400 mb-4">Cristal pintado a mano, 750ml. Detalles en oro líquido.</p>
+                    </div>
+                    <div class="flex justify-between items-center mt-4 pt-4 border-t-2 border-obsidian">
+                        <span class="font-brutal font-bold text-blood text-xl">$4,500 MXN</span>
+                        <button class="bg-bone text-void font-brutal font-bold px-4 py-2 border-2 border-void hover:bg-blood hover:text-bone hover:border-bone transition-colors">AÑADIR</button>
+                    </div>
+                </div>
+
+                <!-- Producto 2 -->
+                <div class="bg-[#121212] border-4 border-bone p-4 flex flex-col h-full shadow-brutal-blood relative group">
+                    <div class="h-80 w-full mb-4 border-2 border-obsidian overflow-hidden bg-black flex items-center justify-center">
+                        <img src="Jarrón Traslucido.jpeg" alt="Jarrón Traslúcido" class="max-h-full max-w-full object-contain group-hover:scale-110 transition-transform duration-500">
+                    </div>
+                    <div class="flex-grow">
+                        <h3 class="font-gothic font-bold text-2xl text-bone mb-1">Jarrón de las Sombras</h3>
+                        <p class="font-body text-sm text-gray-400 mb-4">Arte objeto. Barro intervenido con pigmentos naturales y técnicas de ahumado.</p>
+                    </div>
+                    <div class="flex justify-between items-center mt-4 pt-4 border-t-2 border-obsidian">
+                        <span class="font-brutal font-bold text-blood text-xl">$8,200 MXN</span>
+                        <button class="bg-bone text-void font-brutal font-bold px-4 py-2 border-2 border-void hover:bg-blood hover:text-bone hover:border-bone transition-colors">AÑADIR</button>
+                    </div>
+                </div>
+
+                <!-- Producto 3 -->
+                <div class="bg-[#121212] border-4 border-bone p-4 flex flex-col h-full shadow-brutal-blood relative group">
+                    <div class="absolute -left-3 top-4 bg-void text-bone font-brutal font-bold border-2 border-bone px-2 py-1 -rotate-6 z-10 text-xs">PIEZA ÚNICA</div>
+                    <div class="h-80 w-full mb-4 border-2 border-obsidian overflow-hidden bg-black flex items-center justify-center">
+                        <img src="Craneo y Luna.jpeg" alt="Grabado Cráneo" class="max-h-full max-w-full object-contain group-hover:scale-110 transition-transform duration-500 filter invert">
+                    </div>
+                    <div class="flex-grow">
+                        <h3 class="font-gothic font-bold text-2xl text-bone mb-1">Linograbado 'Cráneo y Luna'</h3>
+                        <p class="font-body text-sm text-gray-400 mb-4">Impresión original sobre papel algodón. Edición 1/1, enmarcado en madera negra.</p>
+                    </div>
+                    <div class="flex justify-between items-center mt-4 pt-4 border-t-2 border-obsidian">
+                        <span class="font-brutal font-bold text-blood text-xl">$12,000 MXN</span>
+                        <button class="bg-bone text-void font-brutal font-bold px-4 py-2 border-2 border-void hover:bg-blood hover:text-bone hover:border-bone transition-colors">AÑADIR</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN TESTIMONIOS -->
+    <section id="testimonials" class="py-20 bg-bone text-void border-t-8 border-void overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="font-gothic text-4xl font-bold uppercase mb-12 text-center text-blood">Ecos de Coleccionistas</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-void text-bone p-8 border-4 border-void shadow-[6px_6px_0_0_#7a0000] relative">
+                    <span class="absolute -top-6 left-4 font-gothic text-6xl text-blood">"</span>
+                    <p class="font-body italic mb-6 mt-4">"La licorera de Xoloitzcuintle es el centro de atención en mi galería personal. El nivel de detalle y la energía oscura que emana es incomparable."</p>
+                    <p class="font-brutal font-bold text-blood uppercase text-sm">- A. Valenzuela, CDMX</p>
+                </div>
+                
+                <div class="bg-void text-bone p-8 border-4 border-void shadow-[6px_6px_0_0_#7a0000] relative md:-translate-y-4">
+                    <span class="absolute -top-6 left-4 font-gothic text-6xl text-blood">"</span>
+                    <p class="font-body italic mb-6 mt-4">"Adquirir un lienzo de MAYARIKH fue conectar con mis raíces desde una perspectiva cruda y visceral. Arte brutal en el mejor sentido."</p>
+                    <p class="font-brutal font-bold text-blood uppercase text-sm">- E. Montenegro, Monterrey</p>
+                </div>
+
+                <div class="bg-void text-bone p-8 border-4 border-void shadow-[6px_6px_0_0_#7a0000] relative">
+                    <span class="absolute -top-6 left-4 font-gothic text-6xl text-blood">"</span>
+                    <p class="font-body italic mb-6 mt-4">"Impecable empaque y una obra que trasciende lo decorativo. Es un fragmento de ritual ancestral adaptado a la contemporaneidad."</p>
+                    <p class="font-brutal font-bold text-blood uppercase text-sm">- M. Rojas, Los Ángeles</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN CONTACTO -->
+    <section id="contact" class="py-24 bg-void border-t-8 border-bone relative z-10">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-blood border-8 border-bone p-8 md:p-12 shadow-[12px_12px_0_0_#1a1a1c]">
+                <div class="text-center mb-10">
+                    <h2 class="font-gothic text-4xl md:text-5xl font-bold uppercase text-bone mb-4">Convoca a los Creadores</h2>
+                    <p class="font-brutal text-bone uppercase tracking-widest text-sm">Comisiones privadas y consultas de galería</p>
+                </div>
+
+                <form action="#" method="POST" class="space-y-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block font-brutal font-bold text-bone mb-2 uppercase text-sm">Nombre / Entidad</label>
+                            <input type="text" class="input-brutal" placeholder="Tu nombre..." required>
+                        </div>
+                        <div>
+                            <label class="block font-brutal font-bold text-bone mb-2 uppercase text-sm">Correo Electrónico</label>
+                            <input type="email" class="input-brutal" placeholder="tu@correo.com" required>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block font-brutal font-bold text-bone mb-2 uppercase text-sm">Asunto de Interés</label>
+                        <select class="input-brutal cursor-pointer appearance-none rounded-none">
+                            <option>Adquisición de Obra Existente</option>
+                            <option>Comisión Privada (Obra Personalizada)</option>
+                            <option>Exposición / Galería</option>
+                            <option>Otro</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block font-brutal font-bold text-bone mb-2 uppercase text-sm">Tu Mensaje</label>
+                        <textarea class="input-brutal h-32 resize-none" placeholder="Escribe tu mensaje en la oscuridad..." required></textarea>
+                    </div>
+                    <div class="text-center pt-4">
+                        <button type="submit" class="btn-brutal w-full md:w-auto text-xl px-12 py-4">Enviar Mensaje</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-obsidian border-t-4 border-void py-12 text-center">
+        <div class="max-w-7xl mx-auto px-4 flex flex-col items-center">
+            <img src="Logotipo_MayariKH.PNG" alt="MAYARIKH Logo" class="h-20 mb-6 filter invert opacity-80">
+            <div class="flex space-x-6 font-brutal text-gray-500 text-sm uppercase font-bold tracking-widest mb-8">
+                <a href="#" class="hover:text-bone transition-colors">Instagram</a>
+                <a href="#" class="hover:text-bone transition-colors">Facebook</a>
+                <a href="#" class="hover:text-bone transition-colors">Política de Privacidad</a>
+            </div>
+            <p class="font-body text-gray-600 text-sm">
+                &copy; 2026 MAYARIKH. Todos los derechos reservados. El arte es eterno.
+            </p>
+        </div>
+    </footer>
+
+    <!-- SCRIPT BOTPRESS INTEGRADO -->
+    <script src="https://cdn.botpress.cloud/webchat/v3.6/inject.js"></script>
+    <script src="https://files.bpcontent.cloud/2026/03/08/18/20260308180127-ICMU8ZZ1.js" defer></script>
+
+    <!-- SCRIPT PARA INTERACCIONES BÁSICAS (Menú Móvil) -->
+    <script>
+        // Manejo del menú móvil
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
+
+        // Cerrar menú al hacer click en un enlace móvil
+        const mobileLinks = menu.querySelectorAll('a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                menu.classList.add('hidden');
+            });
+        });
+    </script>
+</body>
+</html>
